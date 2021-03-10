@@ -1,181 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
   <meta charset="UTF-8">
 
-  <title>Memory Game</title>
+  <title>Kártyajáték</title>
 
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <section class="memory-game">
-    <div class="memory-card" data-framework="A">
+<body> 
+
+  <section class="flip-card-game-grid">
+    <div class="game-controls">
+        <button type="button" onclick="restartBtnClick()">Újrakezd.</button>
+    </div>
+    <div class="flip-card" data-framework="A">
         <img class="front-face" src="img/A.png" alt="A" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="B">
+    <div class="flip-card" data-framework="B">
         <img class="front-face" src="img/B.png" alt="B" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="C">
+    <div class="flip-card" data-framework="C">
         <img class="front-face" src="img/C.png" alt="C" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="D">
+    <div class="flip-card" data-framework="D">
         <img class="front-face" src="img/D.png" alt="D" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="E">
+    <div class="flip-card" data-framework="E">
         <img class="front-face" src="img/E.png" alt="E" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="F">
+    <div class="flip-card" data-framework="F">
         <img class="front-face" src="img/F.png" alt="F" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="G">
+    <div class="flip-card" data-framework="G">
         <img class="front-face" src="img/G.png" alt="G" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="H">
+    <div class="flip-card" data-framework="H">
         <img class="front-face" src="img/H.png" alt="H" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
 
-    <div class="memory-card" data-framework="A">
+    <div class="flip-card" data-framework="A">
         <img class="front-face" src="img/A.png" alt="A" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="B">
+    <div class="flip-card" data-framework="B">
         <img class="front-face" src="img/B.png" alt="B" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="C">
+    <div class="flip-card" data-framework="C">
         <img class="front-face" src="img/C.png" alt="C" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="D">
+    <div class="flip-card" data-framework="D">
         <img class="front-face" src="img/D.png" alt="D" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="E">
+    <div class="flip-card" data-framework="E">
         <img class="front-face" src="img/E.png" alt="E" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="F">
+    <div class="flip-card" data-framework="F">
         <img class="front-face" src="img/F.png" alt="F" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="G">
+    <div class="flip-card" data-framework="G">
         <img class="front-face" src="img/G.png" alt="G" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="H">
+    <div class="flip-card" data-framework="H">
         <img class="front-face" src="img/H.png" alt="H" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
 
-    <div class="memory-card" data-framework="A">
+    <div class="flip-card" data-framework="A">
         <img class="front-face" src="img/A.png" alt="A" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="B">
+    <div class="flip-card" data-framework="B">
         <img class="front-face" src="img/B.png" alt="B" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="C">
+    <div class="flip-card" data-framework="C">
         <img class="front-face" src="img/C.png" alt="C" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="D">
+    <div class="flip-card" data-framework="D">
         <img class="front-face" src="img/D.png" alt="D" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="E">
+    <div class="flip-card" data-framework="E">
         <img class="front-face" src="img/E.png" alt="E" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="F">
+    <div class="flip-card" data-framework="F">
         <img class="front-face" src="img/F.png" alt="F" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="G">
+    <div class="flip-card" data-framework="G">
         <img class="front-face" src="img/G.png" alt="G" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="H">
+    <div class="flip-card" data-framework="H">
         <img class="front-face" src="img/H.png" alt="H" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
 
-    <div class="memory-card" data-framework="A">
+    <div class="flip-card" data-framework="A">
         <img class="front-face" src="img/A.png" alt="A" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="B">
+    <div class="flip-card" data-framework="B">
         <img class="front-face" src="img/B.png" alt="B" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="C">
+    <div class="flip-card" data-framework="C">
         <img class="front-face" src="img/C.png" alt="C" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="D">
+    <div class="flip-card" data-framework="D">
         <img class="front-face" src="img/D.png" alt="D" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="E">
+    <div class="flip-card" data-framework="E">
         <img class="front-face" src="img/E.png" alt="E" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="F">
+    <div class="flip-card" data-framework="F">
         <img class="front-face" src="img/F.png" alt="F" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="G">
+    <div class="flip-card" data-framework="G">
         <img class="front-face" src="img/G.png" alt="G" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="H">
+    <div class="flip-card" data-framework="H">
         <img class="front-face" src="img/H.png" alt="H" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
 
-    <div class="memory-card" data-framework="A">
+    <div class="flip-card" data-framework="A">
         <img class="front-face" src="img/A.png" alt="A" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="B">
+    <div class="flip-card" data-framework="B">
         <img class="front-face" src="img/B.png" alt="B" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="C">
+    <div class="flip-card" data-framework="C">
         <img class="front-face" src="img/C.png" alt="C" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="D">
+    <div class="flip-card" data-framework="D">
         <img class="front-face" src="img/D.png" alt="D" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="E">
+    <div class="flip-card" data-framework="E">
         <img class="front-face" src="img/E.png" alt="E" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="F">
+    <div class="flip-card" data-framework="F">
         <img class="front-face" src="img/F.png" alt="F" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="G">
+    <div class="flip-card" data-framework="G">
         <img class="front-face" src="img/G.png" alt="G" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
-    <div class="memory-card" data-framework="H">
+    <div class="flip-card" data-framework="H">
         <img class="front-face" src="img/H.png" alt="H" />
         <img class="back-face" src="img/qm.png" alt="qm" />
     </div>
 
   </section>
 
+  <section class="big-flip-card-ground">
+    <div class="big-flip-card" id="big-card" data-framework="A">
+        <img class="front-face" src="img/A.png" alt="A" />
+        <img class="back-face" src="img/qm.png" alt="qm" />
+    </div>
+  </section>
+
   <script src="scripts.js"></script>
 </body>
+</aside>
 </html>
