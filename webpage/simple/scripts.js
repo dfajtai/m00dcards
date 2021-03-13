@@ -2,8 +2,9 @@ cards = document.querySelectorAll('.flip-card');
 
 let hasSelectedCard = false; //van kijelölt kártya
 let lockBoard = false;
-let selectedCard, bigCard;
+var selectedCard, bigCard = null;
 let randomSeed = 1234;
+
 
 bigCard = document.getElementById("big-card");
 
@@ -31,13 +32,14 @@ function selectCard() {
   hasSelectedCard = true;
   selectedCard = this;
   lockBoard = true;
-  setTimeout(()=>{
-    var src = this.children[1].src;
-    bigCard.children[1].src = src.replace("/small/","/big/");
-    //console.log(this.children[1].src);
+  var fileName = $(this).data('rel');
+  bigCard.children[1].src = "img/big/back/"+fileName;
+
+  setTimeout(()=>{  
     bigCard.classList.remove('flip');
-    },100);
     lockBoard= false;
+  },100);
+  
 }
 
 function viewOldCard(){
@@ -45,21 +47,26 @@ function viewOldCard(){
   hasSelectedCard = false;
   selectedCard = null;
   bigCard.classList.add('flip');
-  var src = this.children[0].src;
-  bigCard.children[0].src = src.replace("/small/","/big/");
+  var fileName = $(this).data('rel');
+  bigCard.children[0].src = "img/big/front/"+fileName;
 }
 
 function flipCard() {
   if (lockBoard) return;
   if  (!hasSelectedCard) return;
   lockBoard = true;
-  var src = selectedCard.children[0].src;
-  bigCard.children[0].src = src.replace("/small/","/big/");
-  this.classList.add('flip');
-  selectedCard.classList.add('flip');
-  hasSelectedCard = false;
-  lockBoard = false;
-  revealCard();
+
+  var fileName = $(selectedCard).data('rel');
+  bigCard.children[0].src = "img/big/front/"+fileName;
+
+  setTimeout(()=>{  
+    this.classList.add('flip');
+    selectedCard.classList.add('flip');
+    hasSelectedCard = false;
+    lockBoard = false;
+    revealCard();
+  },100);
+
 }
 
 function revealCard() {
