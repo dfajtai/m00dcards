@@ -51,15 +51,16 @@
 
         <section class="big-flip-card-ground">
                 <div class="big-flip-card" id="big-card">
-                        <img class="front-face" src="img/MOODCARDS.jpg" alt="A" />
-                        <img class="back-face" src="img/MOODCARDS.jpg" alt="qm" />
+                        <img class="big-front-face" src="img/MOODCARDS.jpg" alt="?" />
+                        <img class="big-back-face" src="img/MOODCARDS.jpg" alt="?" />
                 </div>
-
+<!---
                 <div class="game-controls">
                         <button type="button" onclick="restartBtnClick()">Újrakezd.</button><br><br>
                         <input type="text" id="txtSeedText" value="Árvíztűrő tükörfúrógép" width="200px">
                         <button type="button" onclick="setRandomSeed()">Jelmondat megadása.</button>
                 </div>
+--->
         </section>
 
         <script>
