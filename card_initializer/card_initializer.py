@@ -158,23 +158,30 @@ def match_faces(card_info_1,card_info_2):
         card_matching_list.append(_best_match_index)
     return card_matching_list
 
-def save_images_simple(card_info_1,card_info_2, out_dir = "", batch_name = "", order = "fb",html_path = ""):
+def save_images_simple(card_info_1,card_info_2, out_dir = "", index = 1, order = "fb",html_path = ""):
     matching_list = match_faces(card_info_1,card_info_2)
     #print(matching_list)
 
+    dir_name_dict = {"f":"face","b":"back"}
+
     for i in range(len(card_info_1)):
         card_1 = card_info_1[i]["image"]
-        c1_name= f"{batch_name}_{i+1}_{order[0]}.png"
-        cv.imwrite(os.path.join(out_dir,c1_name),card_1)
+        card_1_name= f"{index}.png"
+        cv.imwrite(os.path.join(out_dir,dir_name_dict[order[0]],c1_name),card_1)
 
         matching_card = card_info_2[matching_list[i]]
 
-        card_2 = matching_card["image"]
+        
         c2_name = f"{batch_name}_{i+1}_{order[1]}.png"
         cv.imwrite(os.path.join(out_dir,c2_name),card_2)
+        
+        card_2 = matching_card["image"]
+        card_2_name= f"{index}.png"
+        cv.imwrite(os.path.join(out_dir,dir_name_dict[order[1]],c2_name),card_2)
 
-        #print_html_code(c1_name,c2_name,html_path)
+        index +=1
 
+    return index
 
 
 def print_html_code(c1_name, c2_name, html_path):
