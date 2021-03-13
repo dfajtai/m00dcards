@@ -24,7 +24,6 @@ Random.prototype.nextFloat = function (opt_minOrMax, opt_max) {
 };
 
 
-
 function selectCard() {
   if (lockBoard) return;
   if (this === selectedCard) return;
@@ -35,7 +34,7 @@ function selectCard() {
   setTimeout(()=>{
     var src = this.children[1].src;
     enlargedCard.children[1].src = src.replace("/small/","/big/");
-    console.log(this.children[1].src);
+    //console.log(this.children[1].src);
     enlargedCard.classList.remove('flip');
     },100);
     lockBoard= false;
