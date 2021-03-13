@@ -1,4 +1,3 @@
-import cv2 as cv
 import skimage
 import matplotlib.pyplot as plt
 import os, sys
@@ -7,8 +6,8 @@ from scipy.ndimage import binary_fill_holes
 from scipy import ndimage
 import numpy as np
 import re
+import cv2 as cv
 
-from pdf2image import convert_from_path
 
 def rotate_image(image, angle):
   image_center = tuple(np.array(image.shape[1::-1]) / 2)
@@ -84,7 +83,7 @@ def extract_card_info(img_path, show_mask= False):
         _mask = np.zeros_like(mask)
         _mask[labeled_mask == v] = 1
         
-        contours,hierarchy = cv.findContours(_mask, 1, 2)
+        contours, hierarchy = cv.findContours(_mask, 1, 2)
         cnt = contours[0]
         rect = cv.minAreaRect(cnt)
         box_points = cv.boxPoints(rect)
@@ -159,7 +158,7 @@ def match_faces(card_info_1,card_info_2):
         card_matching_list.append(_best_match_index)
     return card_matching_list
 
-def save_images(card_info_1,card_info_2, out_dir = "", batch_name = "", order = "fb",html_path = ""):
+def save_images_simple(card_info_1,card_info_2, out_dir = "", batch_name = "", order = "fb",html_path = ""):
     matching_list = match_faces(card_info_1,card_info_2)
     #print(matching_list)
 
@@ -174,14 +173,16 @@ def save_images(card_info_1,card_info_2, out_dir = "", batch_name = "", order = 
         c2_name = f"{batch_name}_{i+1}_{order[1]}.png"
         cv.imwrite(os.path.join(out_dir,c2_name),card_2)
 
+        #print_html_code(c1_name,c2_name,html_path)
 
-        html_string = '<div class="flip-card">\n'
-        html_string += f'\t<img class="front-face" src="{html_path}/{c1_name}" alt="?" />\n'
-        html_string += f'\t<img class="back-face" src="{html_path}/{c2_name}" alt="?" />\n'
-        html_string += '</div>\n'
-        
-        print(html_string)
 
+
+def print_html_code(c1_name, c2_name, html_path):
+    html_string = '<div class="flip-card">\n'
+    html_string += f'\t<img class="front-face" src="{html_path}/{c1_name}" alt="?" />\n'
+    html_string += f'\t<img class="back-face" src="{html_path}/{c2_name}" alt="?" />\n'
+    html_string += '</div>\n'
+    print(html_string)
 
 def image_path_handling(source_dir,face_mask,back_mask):
     files = os.listdir(source_dir)
@@ -200,7 +201,7 @@ def image_path_handling(source_dir,face_mask,back_mask):
 
 def process_images():
     #konvertió: for i in *.pdf; do pdftoppm $i ${i/.pdf/""} -png; done
-    raw_img_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)),"raw_img")
+    raw_img_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)),"img","raw_img")
     cards_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),"img","cards")    
 
     face_images, back_images = image_path_handling(raw_img_dir,".*B.*\.png",".*A.*\.png")
@@ -212,7 +213,7 @@ def process_images():
         f_c = extract_card_info(f,show_mask=False)
         b_c = extract_card_info(b)
 
-        save_images(f_c,b_c,cards_path,i+1,"fb","img/cards")
+        save_images_simple(f_c,b_c,cards_path,i+1,"fb","img/cards")
 
 def test():
     example_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),"private")
@@ -225,7 +226,7 @@ def test():
     c1 = extract_card_info(img1_path)
     c2 = extract_card_info(img2_path)
     
-    save_images(c1,c2,"/home/fajtai/")
+    save_images_simple(c1,c2,"/home/fajtai/")
 
 
 def main():
