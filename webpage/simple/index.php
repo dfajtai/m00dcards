@@ -1,4 +1,4 @@
-[<?php
+<?php
 
         $CARD_COUNT = 62; #number of cards in deck
         ?>
