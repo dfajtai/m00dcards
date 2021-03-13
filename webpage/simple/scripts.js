@@ -32,8 +32,10 @@ function selectCard() {
   hasSelectedCard = true;
   selectedCard = this;
   lockBoard = true;
-  setTimeout(()=>{  
-    enlargedCard.children[1].src = this.children[1].src;
+  setTimeout(()=>{
+    var src = this.children[1].src;
+    enlargedCard.children[1].src = src.replace("/small/","/big/");
+    console.log(this.children[1].src);
     enlargedCard.classList.remove('flip');
     },100);
     lockBoard= false;
@@ -44,14 +46,16 @@ function viewOldCard(){
   hasSelectedCard = false;
   selectedCard = null;
   enlargedCard.classList.add('flip');
-  enlargedCard.children[0].src = this.children[0].src;
+  var src = this.children[0].src;
+  enlargedCard.children[0].src = src.replace("/small/","/big/");
 }
 
 function flipCard() {
   if (lockBoard) return;
   if  (!hasSelectedCard) return;
   lockBoard = true;
-  enlargedCard.children[0].src = selectedCard.children[0].src;
+  var src = selectedCard.children[0].src;
+  enlargedCard.children[0].src = src.replace("/small/","/big/");
   this.classList.add('flip');
   selectedCard.classList.add('flip');
   hasSelectedCard = false;
@@ -137,4 +141,4 @@ function setRandomSeed(){
 }
 
 restartGame();
-showgameInfo();
+//showgameInfo();

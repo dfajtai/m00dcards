@@ -162,22 +162,17 @@ def save_images_simple(card_info_1,card_info_2, out_dir = "", index = 1, order =
     matching_list = match_faces(card_info_1,card_info_2)
     #print(matching_list)
 
-    dir_name_dict = {"f":"face","b":"back"}
+    dir_name_dict = {"f":"front","b":"back"}
 
     for i in range(len(card_info_1)):
         card_1 = card_info_1[i]["image"]
-        card_1_name= f"{index}.png"
-        cv.imwrite(os.path.join(out_dir,dir_name_dict[order[0]],c1_name),card_1)
+        card_name= f"img{str(index).zfill(2)}.png"
+        cv.imwrite(os.path.join(out_dir,dir_name_dict[order[0]],card_name),card_1)
 
         matching_card = card_info_2[matching_list[i]]
-
-        
-        c2_name = f"{batch_name}_{i+1}_{order[1]}.png"
-        cv.imwrite(os.path.join(out_dir,c2_name),card_2)
         
         card_2 = matching_card["image"]
-        card_2_name= f"{index}.png"
-        cv.imwrite(os.path.join(out_dir,dir_name_dict[order[1]],c2_name),card_2)
+        cv.imwrite(os.path.join(out_dir,dir_name_dict[order[1]],card_name),card_2)
 
         index +=1
 
@@ -212,6 +207,8 @@ def process_images():
     cards_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),"img","cards")    
 
     face_images, back_images = image_path_handling(raw_img_dir,".*B.*\.png",".*A.*\.png")
+    
+    card_index = 1
 
     for i in range(len(face_images)):
         f = face_images[i]
@@ -220,7 +217,7 @@ def process_images():
         f_c = extract_card_info(f,show_mask=False)
         b_c = extract_card_info(b)
 
-        save_images_simple(f_c,b_c,cards_path,i+1,"fb","img/cards")
+        card_index = save_images_simple(f_c,b_c,cards_path,card_index,"fb","img/cards")
 
 def test():
     example_path = os.path.join(os.path.dirname(os.path.dirname(__file__)),"private")
