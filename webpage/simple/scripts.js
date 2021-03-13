@@ -2,10 +2,10 @@ cards = document.querySelectorAll('.flip-card');
 
 let hasSelectedCard = false; //van kijelölt kártya
 let lockBoard = false;
-let selectedCard, enlargedCard;
+let selectedCard, bigCard;
 let randomSeed = 1234;
 
-enlargedCard = document.getElementById("big-card");
+bigCard = document.getElementById("big-card");
 
 
 function Random(seed) {
@@ -33,9 +33,9 @@ function selectCard() {
   lockBoard = true;
   setTimeout(()=>{
     var src = this.children[1].src;
-    enlargedCard.children[1].src = src.replace("/small/","/big/");
+    bigCard.children[1].src = src.replace("/small/","/big/");
     //console.log(this.children[1].src);
-    enlargedCard.classList.remove('flip');
+    bigCard.classList.remove('flip');
     },100);
     lockBoard= false;
 }
@@ -44,9 +44,9 @@ function viewOldCard(){
   if (lockBoard) return;
   hasSelectedCard = false;
   selectedCard = null;
-  enlargedCard.classList.add('flip');
+  bigCard.classList.add('flip');
   var src = this.children[0].src;
-  enlargedCard.children[0].src = src.replace("/small/","/big/");
+  bigCard.children[0].src = src.replace("/small/","/big/");
 }
 
 function flipCard() {
@@ -54,7 +54,7 @@ function flipCard() {
   if  (!hasSelectedCard) return;
   lockBoard = true;
   var src = selectedCard.children[0].src;
-  enlargedCard.children[0].src = src.replace("/small/","/big/");
+  bigCard.children[0].src = src.replace("/small/","/big/");
   this.classList.add('flip');
   selectedCard.classList.add('flip');
   hasSelectedCard = false;
@@ -78,9 +78,9 @@ function restartGame(){
   shuffle();
   cards.forEach(card => card.removeEventListener('click', viewOldCard));
   cards.forEach(card => card.addEventListener('click', selectCard));
-  enlargedCard.addEventListener('click',flipCard);
-  enlargedCard.classList.remove('flip');
-  enlargedCard.children[1].src = "img/MOODCARDS.jpg";
+  bigCard.addEventListener('click',flipCard);
+  bigCard.classList.remove('flip');
+  bigCard.children[1].src = "img/MOODCARDS.jpg";
   cards.forEach(card => card.classList.remove('flip'));
 }
 
