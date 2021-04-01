@@ -9,7 +9,7 @@
 <head>
         <meta charset="UTF-8">
 
-        <title>Kártyajáték</title>
+        <title>m00dcards</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
         <script src="js/jquery-3.6.0.min.js"></script>
@@ -21,7 +21,7 @@
                 <div class="modal-dialog">
                         <div class="modal-content">
                                 <div class="modal-header">
-                                        <h5 class="modal-title">M00dcards</h5>
+                                        <h5 class="modal-title">m00dcards</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tovább"></button>
                                 </div>
                                 <div class="modal-body">
