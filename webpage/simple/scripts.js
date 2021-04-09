@@ -82,7 +82,6 @@ function resetBoard() {
 
 function restartGame(){
   resetBoard();
-  //shuffle_cards();
   cards.forEach(card => card.removeEventListener('click', viewOldCard));
   cards.forEach(card => card.addEventListener('click', selectCard));
   bigCard.addEventListener('click',flipCard);
@@ -108,55 +107,4 @@ function restartBtnClick() {
   }
 }
 
-function shuffle_cards() {
-  console.log("shuffling");
-  cards.forEach(card => {
-    //let randomPos = Math.floor(myrng.nextFloat() * cards.length);
-    let randomPos = Math.floor(Math.random() * cards.length);
-    card.style.order = randomPos;
-  });
-}
-
-function showgameInfo(){
-  var gameInfoText= "Zárt felhasználású kártyajáték.\n";
-  gameInfoText+= "1: Kártya előnézethez/kiválaszsásához kattints egy kis kártyára.\n"
-  gameInfoText+= "2: A kiválasztott kártya felfordításához kattints a nagy kártyára.\n"
-  gameInfoText+= "3: A játék újrakezdéséhez kattints az 'Újrakezd.' gombra.\n"
-  gameInfoText+= "Azonos kártyaleosztás azonos jelmondat megadásával lehetséges. (fejlesztés alatt...)"
-
-  window.alert(gameInfoText);
-}
-
-function stringToSeed(init_string){
-  var _count_ = 5;
-  var vals = [];
-  if(init_string=="") init_string = "Life, the universe, and everything";
-  if(init_string.length<_count_) init_string=init_string.repeat(_count_);
-  var i = Math.max(Math.floor(init_string.length/_count_),1);
-  do{ 
-    vals.push(init_string.substring(0, Math.min(i,init_string.length)).charCodeAt(0));
-    init_string = init_string.substring(i, init_string.length);
-  } 
-  while( init_string != "" );
-
-  //console.log(vals);
-  var seed_value = Math.floor(vals.reduce((a,b)=>(a*b*3),1)); 
-
-  if(seed_value % 2 == 0) return seed_value+1;
-  return seed_value;
-}
-
-
-function setRandomSeed(){
-  var tb = document.getElementById("txtSeedText");
-  var newRandomSeed = stringToSeed(tb.value);
-  if(newRandomSeed != randomSeed){
-    console.log(randomSeed);
-    if(confirm("Újra szeretnéd kezdeni a játékot a megadott jelmondattal?")){
-      restartGame();
-    }
-  }
-}
-
 restartGame();
-//showgameInfo();
