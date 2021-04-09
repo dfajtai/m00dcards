@@ -2,19 +2,23 @@
     #create tables
     try {
         $database->create("sessions", [
-            "session_id" => [
+            "game_id" => [
                 "VARCHAR(30)",
                 "NOT NULL",
                 "PRIMARY KEY"
             ],
             "indices" => [
                 "TEXT",
-                "NOT NULL"
+                "DEFAULT NULL"
             ],
+            "ts" => [
+                "TIMESTAMP",
+                "DEFAULT CURRENT_TIMESTAMP"
+            ]
         ]);
     
         $database->create("states", [
-            "session_id" => [
+            "game_id" => [
                 "VARCHAR(30)",
                 "NOT NULL",
                 "PRIMARY KEY"
@@ -28,6 +32,10 @@
                 "NOT NULL",
                 "DEFAULT -1"
             ],
+            "ts" => [
+                "TIMESTAMP",
+                "DEFAULT CURRENT_TIMESTAMP"
+            ]
         ]);
 
     } catch (Exception $e) {

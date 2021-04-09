@@ -66,7 +66,6 @@ function flipCard() {
     lockBoard = false;
     revealCard();
   },100);
-
 }
 
 function revealCard() {
@@ -92,18 +91,11 @@ function restartGame(){
 
 function restartBtnClick() {
   if(confirm("Újra szeretnéd kezdeni a játékot?")){
-    $.ajax({
-      url : 'new_session.php',
-      type : 'GET',
-      success : function(result) {
-        console.log(result);
-        $("#txtSessionId").val(result);
-        location.reload();
-      },
-      error : function() {
-         console.log('error');
-      }
-    });
+    url = window.location.href.split("?")[0];
+    url = url.endsWith('/') ? url.substr(0, url.length - 1) : url;
+    //delete cookie
+    document.cookie = "gameID" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    window.location.href = url;
   }
 }
 

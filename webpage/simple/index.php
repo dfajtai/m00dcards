@@ -2,7 +2,9 @@
 
         $CARD_COUNT = 62; #number of cards in deck
         require_once 'connect.php';
-        require_once 'create_tables.php';
+        require_once 'create_tables.php'; 
+        require_once 'init_session.php';
+        require_once 'register_session.php';
         session_start();
 ?>
 
@@ -11,7 +13,6 @@
 
 <head>
         <meta charset="UTF-8">
-
         <title>m00dcards</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
@@ -41,9 +42,7 @@
 
         <section class="flip-card-game-grid">
                 <?php
-                require 'initialize_session.php';
-                foreach ($nums as $i) {
-                        echo "<script> console.log('".$i."'); </script>"; ?>
+                foreach ($nums as $i) { ?>
                         <div class="flip-card" data-rel="img<?php printf('%02d', $i) ?>.jpg">
                                 <img class="front-face" src="img/small/front/img<?php printf('%02d', $i) ?>.jpg" alt="?" />
                                 <img class="back-face" src="img/small/back/img<?php printf('%02d', $i) ?>.jpg" alt="?" />
@@ -60,14 +59,16 @@
 
                 <div class="game-controls">
                         <button type="button" onclick="restartBtnClick()">Újrakezd.</button><br><br>
-                        <input type="text" id="txtSessionId" value=<?php echo session_id(); ?> width="200px">
                 </div>
 
         </section>
 
-        <script>
+        <script>                
+                /*
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
+                
+
                 if (! (urlParams.has('session'))){
                         $(document).ready(function() {
                                 $('#welcome').modal('show');
@@ -80,6 +81,8 @@
                                 window.location.reload(1);
                         }, 5000);
                 }
+                */
+
 
         </script>
         <script src="scripts.js"></script>
