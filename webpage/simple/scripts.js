@@ -82,7 +82,7 @@ function resetBoard() {
 
 function restartGame(){
   resetBoard();
-  shuffle();
+  //shuffle_cards();
   cards.forEach(card => card.removeEventListener('click', viewOldCard));
   cards.forEach(card => card.addEventListener('click', selectCard));
   bigCard.addEventListener('click',flipCard);
@@ -93,11 +93,23 @@ function restartGame(){
 
 function restartBtnClick() {
   if(confirm("Újra szeretnéd kezdeni a játékot?")){
-    restartGame();
+    $.ajax({
+      url : 'new_session.php',
+      type : 'GET',
+      success : function(result) {
+        console.log(result);
+        $("#txtSessionId").val(result);
+        location.reload();
+      },
+      error : function() {
+         console.log('error');
+      }
+    });
   }
 }
 
-function shuffle() {
+function shuffle_cards() {
+  console.log("shuffling");
   cards.forEach(card => {
     //let randomPos = Math.floor(myrng.nextFloat() * cards.length);
     let randomPos = Math.floor(Math.random() * cards.length);

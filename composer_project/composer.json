@@ -1,0 +1,6 @@
+{
+    "require": {
+        "nesbot/carbon": "^2.46",
+        "catfan/medoo": "^1.7"
+    }
+}

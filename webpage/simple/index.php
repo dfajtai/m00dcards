@@ -1,7 +1,10 @@
 <?php
 
         $CARD_COUNT = 62; #number of cards in deck
-        ?>
+        require_once 'connect.php';
+        require_once 'create_tables.php';
+        session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="hu">
@@ -38,9 +41,9 @@
 
         <section class="flip-card-game-grid">
                 <?php
-                $nums = range(1, $CARD_COUNT);
-                shuffle($nums);
-                foreach ($nums as $i) { ?>
+                require 'initialize_session.php';
+                foreach ($nums as $i) {
+                        echo "<script> console.log('".$i."'); </script>"; ?>
                         <div class="flip-card" data-rel="img<?php printf('%02d', $i) ?>.jpg">
                                 <img class="front-face" src="img/small/front/img<?php printf('%02d', $i) ?>.jpg" alt="?" />
                                 <img class="back-face" src="img/small/back/img<?php printf('%02d', $i) ?>.jpg" alt="?" />
@@ -54,19 +57,30 @@
                         <img class="big-front-face" src="img/MOODCARDS.jpg" alt="?" />
                         <img class="big-back-face" src="img/MOODCARDS.jpg" alt="?" />
                 </div>
-<!---
+
                 <div class="game-controls">
                         <button type="button" onclick="restartBtnClick()">Újrakezd.</button><br><br>
-                        <input type="text" id="txtSeedText" value="Árvíztűrő tükörfúrógép" width="200px">
-                        <button type="button" onclick="setRandomSeed()">Jelmondat megadása.</button>
+                        <input type="text" id="txtSessionId" value=<?php echo session_id(); ?> width="200px">
                 </div>
---->
+
         </section>
 
         <script>
-                $(document).ready(function() {
-                        $('#welcome').modal('show');
-                });
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                if (! (urlParams.has('session'))){
+                        $(document).ready(function() {
+                                $('#welcome').modal('show');
+                        });
+                }
+                else
+                {       
+                        setTimeout(function(){
+                                const S = urlParams.get('session')
+                                window.location.reload(1);
+                        }, 5000);
+                }
+
         </script>
         <script src="scripts.js"></script>
 
