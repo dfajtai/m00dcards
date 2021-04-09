@@ -2,7 +2,11 @@
     $db_host = 'localhost';
     $db_user = 'syncusr';
     $db_pass = 'MooD.base.123';
-    $db_name = 'syncdb';
+    $db_name = 'syncdb';  
+
+	$db_user = 'id16365625_syncusr';
+    $db_name = 'id16365625_syncdb';
+
     $db_port = 8888;
     
     #$link = mysqli_init();
@@ -25,7 +29,8 @@
 	// [optional]
 	'charset' => 'utf8mb4',
 	'collation' => 'utf8mb4_general_ci',
-	'port' => $db_port,
+	
+	//'port' => $db_port,
  
 	// [optional] Table prefix
 	'prefix' => 'moodcards_',
