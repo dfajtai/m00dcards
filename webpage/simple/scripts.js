@@ -94,7 +94,7 @@ function restartBtnClick() {
     url = window.location.href.split("?")[0];
     url = url.endsWith('/') ? url.substr(0, url.length - 1) : url;
     //delete cookie
-    document.cookie = "gameID" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'gameID=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     window.location.href = url;
   }
 }

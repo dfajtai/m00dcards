@@ -1,17 +1,12 @@
 <?php
-
         $CARD_COUNT = 62; #number of cards in deck
-        session_start();
-        require_once 'connect.php';
-        require_once 'create_tables.php'; 
-        require_once 'init_session.php';
-        require_once 'register_session.php';
-        
+        include('connect.php');
+        include('create_tables.php');
+        include('init_session.php');
+        include('register_session.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="hu">
-
 <head>
         <meta charset="UTF-8">
         <title>m00dcards</title>
@@ -49,9 +44,7 @@
                                 <img class="back-face" src="img/small/back/img<?php printf('%02d', $i) ?>.jpg" alt="?" />
                         </div>
                 <?php } ?>
-
         </section>
-
         <section class="big-flip-card-ground">
                 <div class="big-flip-card" id="big-card">
                         <img class="big-front-face" src="img/MOODCARDS.jpg" alt="?" />
@@ -61,35 +54,8 @@
                 <div class="game-controls">
                         <button type="button" onclick="restartBtnClick()">Újrakezd.</button><br><br>
                 </div>
-
         </section>
-
-        <script>                
-                /*
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-                
-
-                if (! (urlParams.has('session'))){
-                        $(document).ready(function() {
-                                $('#welcome').modal('show');
-                        });
-                }
-                else
-                {       
-                        setTimeout(function(){
-                                const S = urlParams.get('session')
-                                window.location.reload(1);
-                        }, 5000);
-                }
-                */
-
-
-        </script>
         <script src="scripts.js"></script>
-
-
 </body>
-
 
 </html>
