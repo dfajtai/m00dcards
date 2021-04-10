@@ -1,11 +1,12 @@
 <?php
 
         $CARD_COUNT = 62; #number of cards in deck
+        session_start();
         require_once 'connect.php';
         require_once 'create_tables.php'; 
         require_once 'init_session.php';
         require_once 'register_session.php';
-        session_start();
+        
 ?>
 
 <!DOCTYPE html>

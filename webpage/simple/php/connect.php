@@ -7,15 +7,12 @@
 	$db_user = 'id16365625_syncusr';
     $db_name = 'id16365625_syncdb';
 
-    $db_port = 8888;
-    
-    #$link = mysqli_init();
-    #$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-    #if (!$link) {
-    #    die("Connection failed: " . mysqli_connect_error());
-    #}
-    
-    require_once 'Medoo.php';
+	#$db_user = "root";
+	#$db_pass = "root";
+
+    $db_port = 8889;
+        
+    require_once 'php/Medoo.php';
     use Medoo\Medoo;
 
     $database = new Medoo([
