@@ -4,7 +4,6 @@ require_once 'vendor/autoload.php';
 include 'php/connect.php';
 include 'php/create_tables.php';
 include 'php/init_session.php';
-include 'php/register_session.php';
 ?>
 
 <!DOCTYPE html>

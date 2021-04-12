@@ -1,14 +1,14 @@
 <?php
     $db_host = 'localhost';	
     $db_name = 'syncdb';
-	//$db_name = 'id16365625_syncdb';
+	$db_name = 'id16365625_syncdb';
 	$db_user = 'syncusr';
-	//$db_user = 'id16365625_syncusr';
+	$db_user = 'id16365625_syncusr';
     //$db_user = "root";
 	$db_pass = 'MooD.base.123';	
 	//$db_pass = "root";
-    $db_port = 8889;    
-    //$db_port = 3306;
+    //$db_port = 8889;    
+    $db_port = 3306;
     use Medoo\Medoo;
     $database = new Medoo([
 	// required

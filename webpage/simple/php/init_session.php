@@ -1,12 +1,17 @@
 <?php
 use Hashids\Hashids;
 $hashids = new Hashids('m00dcards', 20);
+$nums = null;
 session_start();
 function generateNewGame()
 {
     global $hashids;
     global $database;
-    $database->insert("sessions", ["indices" => ""]);
+    global $CARD_COUNT;
+    global $nums;
+    $nums = range(1, $CARD_COUNT);
+    shuffle($nums);
+    $database->insert("sessions", ["indices" => json_encode($nums)]);
     $dbGameID = $database->id();
     return $hashids->encode($dbGameID);
 }
@@ -19,6 +24,12 @@ function validateGameId($gameID){
     $dbGameID = getDbGameID($gameID);
     return $database->count("sessions", ["game_id" => $dbGameID]) > 0;
 }
+function getGameInit($gameID){
+    global $database;
+    $init_state = $database->select("sessions", "indices", ["game_id" => getDbGameID($gameID)]);
+    $nums = json_decode($init_state[0]);
+    return $nums;
+}
 function redirectToGame($gameID){
     $current_uri = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
     $current_uri = explode("?", $current_uri)[0];
@@ -30,6 +41,7 @@ if (isset($_GET["gameID"]) && validateGameId(htmlspecialchars_decode($_GET["game
     #valid gameID in url
     $gameID = htmlspecialchars_decode($_GET["gameID"]);
     $_SESSION['gameID'] = $gameID;
+    $nums = getGameInit($gameID);
 } 
 else {
     $gameID = generateNewGame();
