@@ -1,0 +1,6 @@
+{
+    "require": {
+        "catfan/medoo": "^1.7",
+        "hashids/hashids": "^4.1"
+    }
+}
