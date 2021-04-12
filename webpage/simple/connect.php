@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
     $db_host = 'localhost';	
     $db_name = 'syncdb';
 	$db_name = 'id16365625_syncdb';
@@ -10,6 +11,25 @@
     $db_port = 8889;    
     $db_port = 3306;
     include('Medoo.php');	
+=======
+    $db_host = 'localhost';
+    $db_user = 'syncusr';
+    $db_pass = 'MooD.base.123';
+    $db_name = 'syncdb';  
+
+	//$db_user = 'id16365625_syncusr';
+    //$db_name = 'id16365625_syncdb';
+
+    $db_port = 8888;
+    
+    #$link = mysqli_init();
+    #$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    #if (!$link) {
+    #    die("Connection failed: " . mysqli_connect_error());
+    #}
+    
+    require_once 'Medoo.php';
+>>>>>>> Stashed changes
     use Medoo\Medoo;
     $database = new Medoo([
 	// required
