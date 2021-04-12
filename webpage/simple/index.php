@@ -1,5 +1,7 @@
 <?php
 $CARD_COUNT = 62; #number of cards in deck
+$nums = range(1, $CARD_COUNT);
+session_start();
 require_once 'vendor/autoload.php';
 include 'php/connect.php';
 include 'php/create_tables.php';

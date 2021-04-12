@@ -1,7 +1,7 @@
 <?php
 use Hashids\Hashids;
 $hashids = new Hashids('m00dcards', 20);
-$nums = null;
+$nums = range(1, $CARD_COUNT);
 session_start();
 function generateNewGame()
 {
@@ -9,7 +9,6 @@ function generateNewGame()
     global $database;
     global $CARD_COUNT;
     global $nums;
-    $nums = range(1, $CARD_COUNT);
     shuffle($nums);
     $database->insert("sessions", ["indices" => json_encode($nums)]);
     $dbGameID = $database->id();
