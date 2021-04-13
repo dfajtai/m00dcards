@@ -6,36 +6,24 @@ try {
             "INT",
             "NOT NULL",
             "AUTO_INCREMENT",
-            "PRIMARY KEY",
+            "PRIMARY KEY"
         ],
-        "indices" => [
+        "init_state" => [
             "TEXT",
-            "DEFAULT NULL",
+            "DEFAULT NULL"
+        ],
+        "last_state" => [
+            "TEXT",
+            "DEFAULT NULL"
+        ],
+        "selected" =>[
+            "TEXT",
+            "DEFAULT NULL"
         ],
         "ts" => [
             "TIMESTAMP",
-            "DEFAULT CURRENT_TIMESTAMP",
+            "DEFAULT CURRENT_TIMESTAMP"
         ],
-    ]);
-    $database->create("states", [
-        "game_id" => [
-            "INT",
-            "NOT NULL",
-        ],
-        "state" => [
-            "TEXT",
-            "NOT NULL",
-        ],
-        "selected" => [
-            "INT",
-            "NOT NULL",
-            "DEFAULT -1",
-        ],
-        "ts" => [
-            "TIMESTAMP",
-            "DEFAULT CURRENT_TIMESTAMP",
-        ],
-        "PRIMARY KEY (game_id,ts)"
     ]);
 } catch (Exception $e) {
     $error = 1;

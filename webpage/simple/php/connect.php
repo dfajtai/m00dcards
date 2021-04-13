@@ -1,8 +1,8 @@
 <?php
     $db_host = 'localhost';	
-    $db_name = 'syncdb';
+    //$db_name = 'syncdb';
 	$db_name = 'id16365625_syncdb';
-	$db_user = 'syncusr';
+	//$db_user = 'syncusr';
 	$db_user = 'id16365625_syncusr';
     //$db_user = "root";
 	$db_pass = 'MooD.base.123';	

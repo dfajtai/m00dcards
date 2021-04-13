@@ -45,10 +45,6 @@ body {
     border-radius: 40px;
 }
 
-.game-controls {
-    float   : left;
-    position: relative;
-}
 
 .big-card img {
     width        : 100%;
