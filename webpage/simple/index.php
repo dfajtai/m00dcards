@@ -11,7 +11,7 @@ include 'php/connect.php';
 include 'php/create_tables.php';
 include 'php/init_session.php';
 include 'php/get_state.php';
-include 'php/post_state.php';
+include 'php/sync_state.php';
 ?>
 
 <!DOCTYPE html>
@@ -154,7 +154,7 @@ include 'php/post_state.php';
                                         //post status to database
                                         $.ajax({
                                                 type: "POST",
-                                                url: "php/post_state.php",
+                                                url: "php/sync_state.php",
                                                 data: {
                                                         new_state: selectedPosition,
                                                         gameID: '<?php echo $gameID; ?>',
@@ -164,10 +164,11 @@ include 'php/post_state.php';
                                                 success: function(data) {
                                                         var unstaged = data["unstaged"];
                                                         if (unstaged) {
-                                                                Array.from(unstaged).forEach(element => {
-                                                                        var sc = $('.small-card[data-position="' + element + '"]');
+                                                                Object.values(unstaged).forEach(element => {
+                                                                        var sc = $('#sc' + element);
                                                                         if (sc) {
-                                                                                sc.children('.smallhover').addClass("flip");
+                                                                                var smallhover = sc.children('.smallhover');
+                                                                                smallhover.addClass("flip");
                                                                         }
                                                                 });
                                                         }
@@ -193,7 +194,7 @@ include 'php/post_state.php';
                         js_selected_index = selectedPosition;
                         $.ajax({
                                 type: "POST",
-                                url: "php/post_state.php",
+                                url: "php/sync_state.php",
                                 data: {
                                         selection_changed: selectedPosition,
                                         gameID: '<?php echo $gameID; ?>',
@@ -203,10 +204,11 @@ include 'php/post_state.php';
                                 success: function(data) {
                                         var unstaged = data["unstaged"];
                                         if (unstaged) {
-                                                Array.from(unstaged).forEach(element => {
-                                                        var sc = $('.small-card[data-position="' + element + '"]');
+                                                Object.values(unstaged).forEach(element => {
+                                                        var sc = $('#sc' + element);
                                                         if (sc) {
-                                                                sc.children('.smallhover').addClass("flip");
+                                                                var smallhover = sc.children('.smallhover');
+                                                                smallhover.addClass("flip");
                                                         }
                                                 });
                                         }
@@ -214,10 +216,10 @@ include 'php/post_state.php';
                                 }
                         });
                 });
-                
+
                 var js_current_state = null;
                 var js_selected_index = null;
-                var gameID=null;
+                var gameID = null;
                 var gameDbID = null;
 
                 $(document).ready(function() {
@@ -245,6 +247,44 @@ include 'php/post_state.php';
                         gameID = '<?php echo $gameID; ?>';
                         gameDbID = '<?php echo getDbGameID($gameID); ?>';
 
+                        setInterval(function() {
+                                $.ajax({
+                                        type: "GET",
+                                        url: "php/sync_state.php",
+                                        data: {
+                                                pull_state: true,
+                                                gameID: '<?php echo $gameID; ?>',
+                                                current_state: JSON.stringify(js_current_state)
+                                        },
+                                        dataType: "json",
+                                        success: function(data) {
+                                                var unstaged = data["unstaged"];
+                                                if (unstaged) {
+                                                        Object.values(unstaged).forEach(element => {
+                                                                var sc = $('#sc' + element);
+                                                                if (sc) {
+                                                                        var smallhover = sc.children('.smallhover');
+                                                                        smallhover.addClass("flip");
+                                                                }
+                                                        });
+                                                }
+                                                js_current_state = data["current_state"];
+                                                
+                                                var selected = data["selected"];
+                                                if (selected) {
+                                                        js_selected_index = selected;
+                                                        if (js_selected_index != -1) {
+                                                                var sc = document.getElementById("sc" + js_selected_index);
+
+                                                                if (sc) {
+                                                                        update_big_card(sc);
+                                                                }
+                                                        }
+                                                }
+                                                
+                                        }
+                                });
+                        }, 2000);
                 });
         </script>
 
