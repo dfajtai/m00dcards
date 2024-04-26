@@ -22,7 +22,7 @@ function post_new_state($selectedIndex)
     global $state_counter;
     global $gameID;
     //update local state
-    $db_state = get_last_state($gameID);
+    $db_state = get_last_state($gameID); 
     if (count($db_state["last_state"]) == 0) {
         $unstaged = array();
         if($selectedIndex!=-1){
